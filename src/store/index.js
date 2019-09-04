@@ -6,10 +6,12 @@ import * as actions from '../actions'
 const initialState = {
   counter: 0,
   status: "INITIAL",
-  messages: []
+  messages: [],
+  isAuthenticated: false,
 }
 
 const initializer = (store) => {
+  store.actions.messages.login(store)
   store.actions.messages.getAllMessages(store)
 }
 

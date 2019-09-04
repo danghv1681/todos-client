@@ -1,9 +1,11 @@
 import React from 'react'
 import useGlobal from '../../store'
 
+import Chat from './Chat'
+
 const Demo = () => {
   const [globalState, globalActions] = useGlobal()
-  console.log('global state...', globalState)
+  // console.log('global state...', globalState)
   const { messages } = globalState
   return (
     <div>
@@ -14,13 +16,7 @@ const Demo = () => {
       <button type="button" onClick={() => globalActions.counter.addToCounter(1)}>
         +1 to global
       </button>
-      <ul>
-        {
-          messages.map((message, index) => (
-            <li key={index}>{message.text}</li>
-          ))
-        }
-      </ul>
+      <Chat />
     </div>
   )
 }
