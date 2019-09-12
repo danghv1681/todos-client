@@ -11,8 +11,8 @@ const initialState = {
 }
 
 const initializer = (store) => {
-  store.actions.messages.login(store)
-  store.actions.messages.getAllMessages(store)
+  // store.actions.messages.login(store)
+  // store.actions.messages.getAllMessages(store)
 }
 
 const useGlobal = useGlobalHook(React, initialState, actions, initializer)

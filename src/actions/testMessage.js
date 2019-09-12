@@ -4,7 +4,7 @@ export const getAllMessages = async (store) => {
   const status = "LOADING"
   store.setState({ status })
   try {
-    const messages = await app.service('messages').find()
+    const { messages } = await app.service('messages').find()
     // console.log('messages...', messages)
     const isMegsEmpty = messages.length == 0
     const status = isMegsEmpty ? "EMPTY" : "SUCCESS"
@@ -26,12 +26,22 @@ export const createMessage = async (store, data) => {
   }
 }
 
-export const login = async (store) => {
+export const login = async (store, {username, password}) => {
   try {
-    const users = await app.service('authentication').find({})
-    // const user = await app.reAuthenticate()
-    console.log('user...', users)
-    if (user) { store.setState({ isAuthenticated: true }) }
+    console.log('params...', username, password)
+    const user = await app.authenticate({
+      strategy: 'local',
+      // email: 'hello@feathersjs.com',
+      // password: 'supersecret',
+      email: username,
+      password,
+    })
+    console.log('user...', user)
+    const token = await app.get('accessToken')
+    console.log('token...', token)
+    // if (token) {
+    //   store.setState({ isAuthenticated: true })
+    // }
   } catch (error) {
     await app.authenticate({
       strategy: 'local',

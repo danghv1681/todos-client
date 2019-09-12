@@ -4,7 +4,7 @@ import useGlobal from '../../store'
 const Chat = () => {
   const [globalState, globalActions] = useGlobal()
   const [text, setText] = useState('')
-  // console.log('global state...', globalState)
+  console.log('global state...', globalState)
   const { messages } = globalState
   return (
     <main>
@@ -27,7 +27,7 @@ const Chat = () => {
       <h2>Here are the current messages:</h2>
       <ul>
         {
-          messages.map((message, index) => (
+          messages && messages.map((message, index) => (
             <li key={index}>{message.text}</li>
           ))
         }
